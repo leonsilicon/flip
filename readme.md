@@ -2,4 +2,4 @@
 
 A zero-player card game.
 
-TODO: integrate WASM into a simulation
+TODO: integrate WASM into a web simulation
