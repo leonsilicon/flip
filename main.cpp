@@ -36,13 +36,13 @@ card, etc.
 typedef unsigned long long ull;
 
 unordered_set<ull> visited_states;
-int num_cards = 10;
+ull num_cards = 10;
 
 ull get_next_state(ull cur_state);
 
 bool check_all_cards_face_down(ull state) {
-	for (int i = 0; i < num_cards; i += 1) {
-		int is_face_up = (state >> (i * 5)) & 0b10000ULL;
+	for (ull i = 0; i < num_cards; i += 1) {
+		ull is_face_up = (state >> (i * 5)) & 0b10000ULL;
 		if (is_face_up) return false;
 	}
 	return true;
@@ -123,7 +123,7 @@ ull get_next_state(ull cur_state) {
 	// value of the card
 
 	// Iterating through the top cards and swapping them
-	for (int i = 0; i < (card_value + 1) / 2; i += 1) {
+	for (ull i = 0; i < (card_value + 1) / 2; i += 1) {
 		// Getting the card closer to the top of the dock
 		ull top_card = (cur_state >> i * 5) & 0b11111ULL;
 		// Flipping the card's orientation
@@ -148,16 +148,16 @@ ull get_next_state(ull cur_state) {
 
 int main() {
 	// The value of the card at index i is cur_arrangement[i]
-	vector<int> cur_arrangement;
-	for (int i = 1; i <= num_cards; i += 1) {
+	vector<ull> cur_arrangement;
+	for (ull i = 1; i <= num_cards; i += 1) {
 		cur_arrangement.push_back(i);
 	}
 
-	int result_counts[3] = {0, 0, 0};
+	ull result_counts[3] = {0, 0, 0};
 	do {
 		ull initial_state = 0;
-		for (int i = 0; i < num_cards; i += 1) {
-			int card_value = cur_arrangement[i];
+		for (ull i = 0; i < num_cards; i += 1) {
+			ull card_value = cur_arrangement[i];
 			initial_state |= card_value << i * 5;
 		}
 
