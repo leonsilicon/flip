@@ -1,0 +1,48 @@
+Num cards: 2
+Ace losses: 0
+Inf losses: 0
+Wins: 2
+Num cards: 3
+Ace losses: 2
+Inf losses: 0
+Wins: 4
+Num cards: 4
+Ace losses: 10
+Inf losses: 0
+Wins: 14
+Num cards: 5
+Ace losses: 62
+Inf losses: 0
+Wins: 58
+Num cards: 6
+Ace losses: 413
+Inf losses: 0
+Wins: 307
+Num cards: 7
+Ace losses: 3107
+Inf losses: 0
+Wins: 1933
+Num cards: 8
+Ace losses: 26295
+Inf losses: 0
+Wins: 14025
+Num cards: 9
+Ace losses: 247551
+Inf losses: 0
+Wins: 115329
+Num cards: 10
+Ace losses: 2566675
+Inf losses: 0
+Wins: 1062125
+Num cards: 11
+Ace losses: 29129810
+Inf losses: 0
+Wins: 10786990
+Num cards: 12
+Ace losses: 358561032
+Inf losses: 0
+Wins: 120440568
+Num cards: 13
+Ace losses: 4758021760
+Inf losses: 0
+Wins: 1468999040

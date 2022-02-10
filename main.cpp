@@ -36,7 +36,7 @@ card, etc.
 typedef unsigned long long ull;
 
 unordered_set<ull> visited_states;
-ull num_cards = 10;
+ull num_cards = 3;
 
 ull get_next_state(ull cur_state);
 
@@ -61,12 +61,13 @@ int SIMULATE_WIN = 2;
 int simulate(ull initial_state) {
 	// Maintain a hashset of visited states so we don't end
 	// up in an infinite loop
-	unordered_set<ull> visited_states;
+
+	// unordered_set<ull> visited_states;
 
 	// Flip the card face up before starting
 	// (or else the game will categorize it as a win)
 	initial_state |= 0b10000ULL;
-	visited_states.insert(initial_state);
+	// visited_states.insert(initial_state);
 
 	ull cur_state = initial_state;
 	while (true) {
@@ -80,11 +81,11 @@ int simulate(ull initial_state) {
 			return SIMULATE_WIN;
 		}
 
-		if (visited_states.count(cur_state) == 1) {
-			return SIMULATE_INF_LOSS;
-		}
+		// if (visited_states.count(cur_state) == 1) {
+		// 	return SIMULATE_INF_LOSS;
+		// }
 
-		visited_states.insert(cur_state);
+		// visited_states.insert(cur_state);
 	}
 }
 
@@ -147,27 +148,32 @@ ull get_next_state(ull cur_state) {
 }
 
 int main() {
-	// The value of the card at index i is cur_arrangement[i]
-	vector<ull> cur_arrangement;
-	for (ull i = 1; i <= num_cards; i += 1) {
-		cur_arrangement.push_back(i);
-	}
+	for (ull num_c = 2; num_c <= 13; num_c += 1) {
+		cout << "Num cards: " << num_c << endl;
+		num_cards = num_c;
 
-	ull result_counts[3] = {0, 0, 0};
-	do {
-		ull initial_state = 0;
-		for (ull i = 0; i < num_cards; i += 1) {
-			ull card_value = cur_arrangement[i];
-			initial_state |= card_value << i * 5;
+		// The value of the card at index i is cur_arrangement[i]
+		vector<ull> cur_arrangement;
+		for (ull i = 1; i <= num_cards; i += 1) {
+			cur_arrangement.push_back(i);
 		}
 
-		int result = simulate(initial_state);
-		result_counts[result] += 1;
-	} while (
-		next_permutation(cur_arrangement.begin(), cur_arrangement.end())
-	);
+		ull result_counts[3] = {0, 0, 0};
+		do {
+			ull initial_state = 0;
+			for (ull i = 0; i < num_cards; i += 1) {
+				ull card_value = cur_arrangement[i];
+				initial_state |= card_value << i * 5;
+			}
 
-  cout << "Ace losses: " << result_counts[SIMULATE_ACE_LOSS] << endl;
-  cout << "Inf losses: " << result_counts[SIMULATE_INF_LOSS] << endl;
-  cout << "Wins: " << result_counts[SIMULATE_WIN] << endl;
+			int result = simulate(initial_state);
+			result_counts[result] += 1;
+		} while (
+			next_permutation(cur_arrangement.begin(), cur_arrangement.end())
+		);
+
+		cout << "Ace losses: " << result_counts[SIMULATE_ACE_LOSS] << endl;
+		cout << "Inf losses: " << result_counts[SIMULATE_INF_LOSS] << endl;
+		cout << "Wins: " << result_counts[SIMULATE_WIN] << endl;
+		}
 }
